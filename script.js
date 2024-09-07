@@ -1,25 +1,19 @@
-const searchButton = document.getElementById("searchButton");
-const searchInput = document.getElementById("searchInput");
-const recipeList = document.getElementById("recipeList");
-
-searchButton.addEventListener("click", () => {
-  const searchTerm = searchInput.value;
-  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`)
+document.getElementById('getRecipe').addEventListener('click', () => {
+    fetch('https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?tags=vegetarian,dessert&number=1', {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+            'x-rapidapi-key': '03be057e48msh1ea45aff078aa06p1461f9jsn6dae620f7ea4'
+        }
+    })
     .then(response => response.json())
     .then(data => {
-      recipeList.innerHTML = "";
-      data.meals.forEach(recipe => {
-        const recipeCard = document.createElement("div");
-        recipeCard.className = "recipe-card";
-        recipeCard.innerHTML = `
-          <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
-          <h2>${recipe.strMeal}</h2>
-          <p>${recipe.strInstructions}</p>
-        `;
-        recipeList.appendChild(recipeCard);
-      });
+        const recipe = data.recipes[0];
+        document.getElementById('recipeTitle').textContent = recipe.title;
+        document.getElementById('recipeImage').src = recipe.image;
+        document.getElementById('recipeInstructions').textContent = recipe.instructions;
     })
     .catch(error => {
-      console.error("Une erreur s'est produite :", error);
+        console.error('Error:', error);
     });
 });
