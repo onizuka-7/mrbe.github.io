@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Recipe Finder</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Recettes Culinaires</h1>
-    <input type="text" id="searchInput" placeholder="Rechercher une recette">
-    <button id="searchButton">Rechercher</button>
-  </header>
-  <main id="recipeList">
-    <!-- Les recettes seront affichées ici -->
-  </main>
+    <div class="container">
+        <h1>Random Recipe Finder</h1>
+        <button id="getRecipe">Get Random Recipe</button>
+        <div id="recipe">
+            <h2 id="recipeTitle"></h2>
+            <img id="recipeImage" src="" alt="Recipe Image" />
+            <p id="recipeInstructions"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
